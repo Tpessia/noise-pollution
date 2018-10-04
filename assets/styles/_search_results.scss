@@ -1,0 +1,119 @@
+body {
+    #top-grid {
+
+    }
+    #search-results {
+        .results {
+            .not-found {
+                height: 150px;
+            }
+            .search-item {
+                &:not(:last-child) {
+                    padding-bottom: 20px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+                }
+                .img-box {
+                    .search-img {
+                        padding-top: 100%;
+                        position: relative;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                        @media (max-width: 600px) {
+                            margin-bottom: 20px;
+                        }
+                        .youtube-icon {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            transition: .3s transform;
+                            z-index: 1;
+                            cursor: pointer;
+                            &:hover {
+                                transform: scale(1.1);
+                            }
+                            img {
+                                width: 35px;
+                            }
+                        }
+                    }
+                }
+                .meta-data {
+                    a {
+                        color: rgba(0, 0, 0, 0.87);
+                        &:hover {
+                            text-decoration : underline;
+                        }
+                    }
+                    div {
+                        font-size: 1.1rem;
+                        margin-bottom: 5px;
+                    }
+                    .title {
+                        font-size: 2rem;
+                        line-height: 1.2;
+                        margin-bottom: 15px;
+                    }
+                    .summary {
+                        margin-bottom: 20px;
+                        .read-more {
+                            text-decoration: underline;
+                            &:hover {
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                    .artist,
+                    .album,
+                    .duration {
+                        .label {
+                            font-weight: bold;
+                        }
+                    }
+                    .duration {
+                        margin-bottom: 20px;
+                    }
+                    .counter {
+                        .listeners,
+                        .playcount {
+                            font-style: italic;
+                            .label {
+                                font-style: normal;
+                            }
+                        }
+                    }
+                    .flags {
+                        margin-top: 20px;
+                        .similar,
+                        .tags,
+                        .album-tracks {
+                            a {
+                                line-height: 2;
+                                padding: 2px 5px;
+                                margin: 0 4px;
+                                &:first-child {
+                                    margin-left: 0;
+                                }
+                                &:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+                        }
+                        .similar,
+                        .album-tracks {
+                            a {
+                                background-color: $primary-color-l;
+                            }
+                        }
+                        .tags {
+                            a {
+                                background-color: rgba(0, 0, 0, 0.87);
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

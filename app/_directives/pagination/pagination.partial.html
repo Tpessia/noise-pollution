@@ -1,0 +1,16 @@
+<ul class="pagination" style="display: flex;justify-content: center;min-width: min-content;margin-left:
+50%;transform: translateX(-50%);">
+    <li ng-class="{ 'disabled': currentPage == 1 }">
+        <a ng-click="prevPage()" style="cursor: pointer;">
+            <i class="material-icons">chevron_left</i>
+        </a>
+    </li>
+    <li ng-repeat="i in getNumber(maxPage) track by $index" ng-class="{ 'active': currentPage == $index + 1 + offsetPage }">
+        <a ng-click="goToPage($index + 1 + offsetPage)" style="cursor: pointer;">{{ $index + 1 + offsetPage }}</a>
+    </li>
+    <li class="waves-effect">
+        <a ng-click="nextPage()" style="cursor: pointer;">
+            <i class="material-icons">chevron_right</i>
+        </a>
+    </li>
+</ul>

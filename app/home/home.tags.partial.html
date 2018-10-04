@@ -1,0 +1,20 @@
+<h4>TOP TAGS</h4>
+<ul id="top-tags" class="collection">
+    <li ng-repeat="tag in tags" class="collection-item avatar">
+        <img ng-src="{{ (tag.imgsDone) ? tag.image[1]['#text'] : '' }}" alt="{{ tag.name }}" class="circle">
+        <div class="title tag-name">
+            <a ng-href="{{ tag.url }}" target="_blank">
+                {{ tag.name }}
+            </a>
+        </div>
+        <p class="description">
+            Reach: {{ tag.reach }}
+            <br>
+            Taggings: {{ tag.taggings }}
+        </p>
+        <a ng-href="{{ tag.url }}" target="_blank" class="secondary-content">
+            <i class="material-icons">more_vert</i>
+        </a>
+    </li>
+</ul>
+<div materialize-pag run-on-init="true" max-page="5" page-change-func="getTopTags(page)"></div>

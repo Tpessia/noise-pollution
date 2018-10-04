@@ -1,0 +1,40 @@
+Application name    Noise Polution
+API key    a431af7680e5bd6e612b0eefd5448a06
+Shared secret   d85fcaa436856143743d0fc78e6f1d13
+Registered to   Tpessia
+
+
+
+Application name	Noise Pollution 2
+API key	61b502648995e8805c36d0996d41b879
+Shared secret	85ea238eef2a90073dc1777b3871f3aa
+Registered to	Tpessia
+
+
+
+Application name	Noise Pollution 3
+API key	e443ac025fea43b249a36e29b0f12a91
+Shared secret	937e9002d2eb5aecfa2bd94c9bc7aa94
+Registered to	Tpessia
+
+
+
+Application name	Noise Pollution 4
+API key	dbe84a52343b027da04e9fadde99a0e8
+Shared secret	f0d838f8ddbc53756b64f23344e75698
+Registered to	Tpessia
+
+
+
+Application name	Noise Pollution 5
+API key	5bca7eafa851448173501cf75ab15232
+Shared secret	6007fd324b6b0a1948fc1c7732f2f970
+Registered to	Tpessia
+
+
+
+API Doc
+https://www.last.fm/api/show/album.search
+
+API Example
+http://ws.audioscrobbler.com/2.0/?method=album.search&album=Woodstock&api_key=a431af7680e5bd6e612b0eefd5448a06&format=json

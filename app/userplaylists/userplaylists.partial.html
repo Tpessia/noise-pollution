@@ -1,0 +1,70 @@
+<div class="row userplaylists">
+    <div class="col s12">
+        <h3 class="main-title">
+            SAVED PLAYLISTS
+        </h3>
+    </div>
+    <div class="col s12 carousel-wrapper" ng-if="activePlaylist">
+        <carousel-playlists playlists="playlists" on-slide="selectPlaylist(playlistId)" initial-slide="activePlaylist.index"></carousel-playlists>
+    </div>
+    <div class="col s12 focused-playlist" ng-if="activePlaylist">
+        <hr>
+        <h4 class="playlist-title">
+            <div class="options">
+                <a ng-click="ytVideo.playCustomPlaylist(activePlaylist.playlistId);">
+                    <i class="material-icons">play_arrow</i>
+                </a>
+                <a ng-click="showInput()">
+                    <i class="material-icons">edit</i>
+                </a>
+                <a ng-click="deletePlaylist(activePlaylist.playlistId)">
+                    <i class="material-icons">delete</i>
+                </a>
+                <a ng-click="downloadPlaylist(activePlaylist.playlistId)" ng-if="easterEgg">
+                    <i class="material-icons">file_download</i>
+                </a>
+            </div>
+            <div class="title-wrapper">
+                <span class="playlist-name" ng-if="!state.renamingPlaylist">{{ activePlaylist.name }}</span>
+                <span ng-if="state.renamingPlaylist" ng-init="state.tempName = activePlaylist.name">
+                    <span class="playlist-name" >
+                        <input type="text" ng-model="state.tempName" ng-blur="onBlur()" ng-keydown="$event.keyCode === 13 && renamePlaylist(activePlaylist.playlistId, state.tempName)">
+                    </span>
+                    <i class="material-icons" ng-click="renamePlaylist(activePlaylist.playlistId, tempName)">check</i>
+                </span>
+            </div>
+        </h4>
+        <ul class="playlist-tracks">
+            <li class="empty-list" ng-if="activePlaylist.list.length == 0">
+                This list is empty.
+            </li>
+            <li class="track-item" ng-repeat="music in activePlaylist.list | orderBy:'position'">
+                <span class="track-control">
+                    <a class="remove-track">
+                        <i class="material-icons" ng-click="removeTrack(activePlaylist.playlistId, music.trackId)">close</i>
+                    </a>
+                    <a class="move-track">
+                        <i class="material-icons" ng-class="{ 'control-disabled': $first }" ng-click="changeTrackPosition(activePlaylist.playlistId, music.trackId, 'up')">arrow_upward</i>
+                        <i class="material-icons" ng-class="{ 'control-disabled': $last }" ng-click="changeTrackPosition(activePlaylist.playlistId, music.trackId, 'down')">arrow_downward</i>
+                    </a>
+                    <a class="download-track" ng-if="easterEgg">
+                        <i class="material-icons" ng-click="downloadTrack(music.videoId)">file_download</i>
+                    </a>
+                </span>
+                <span class="track-title" ng-click="ytVideo.open({ type: 'id', id: music.videoId });">
+                    <div class="track-image">
+                        <img ng-src="{{ music.img }}">
+                    </div>
+                    <div class="track-name">
+                        <a>{{ music.title }}</a>
+                    </div>
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="col s12 not-found" ng-if="!activePlaylist">
+        <p>
+            No playlist created yet.
+        </p>
+    </div>
+</div>

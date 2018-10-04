@@ -1,0 +1,62 @@
+<div class="modal-content row">
+    <h4>Login</h4>
+    <form id="signin" name="signin" class="col s12" ng-class="{ 'form-active': !signOut }" ng-submit="actions.signIn()">
+        <h5>Sign In</h5>
+        <div class="row">
+            <div class="input-field orange-input col s12">
+                <input id="username-in" type="text" class="validate" ng-model="formData.signIn.username">
+                <label for="username-in">Username</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field orange-input col s12">
+                <input id="password-in" type="password" class="validate" ng-model="formData.signIn.password">
+                <label for="password-in">Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <button id="signin-submit" class="btn waves-effect waves-light" type="submit" form="signin" name="submit">
+                    SIGN IN
+                </button>
+            </div>
+        </div>
+        <div class="row form-switch">
+            <div class="col s12">Not registered? <a ng-click="signOut = true">Sign Up</a></div>
+        </div>
+    </form>
+    <form id="signup" name="signup" class="col s12" ng-class="{ 'form-active': signOut }" ng-submit="actions.signUp()">
+        <h5>Sign Up</h5>
+        <div class="row">
+            <div class="input-field dark-input col s12">
+                <input id="username-up" type="text" class="validate" ng-model="formData.signUp.username">
+                <label for="username-up">Username</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field dark-input col s12">
+                <input id="password-up" type="password" class="validate" ng-model="formData.signUp.password">
+                <label for="password-up">Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field dark-input col s12">
+                <input id="email-up" type="email" class="validate" ng-model="formData.signUp.email">
+                <label for="email-up">Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <button id="signup-submit" class="btn waves-effect waves-light" type="submit" form="signup" name="submit">
+                    SIGN UP
+                </button>
+            </div>
+        </div>
+        <div class="row form-switch">
+            <div class="col s12">Have an account? <a ng-click="signOut = false">Sign In</a></div>
+        </div>
+    </form>
+    <span class="modal-close">
+        <i class="material-icons">close</i>
+    </span>
+</div>

@@ -1,0 +1,91 @@
+<div class="row usersettings">
+    <div class="col s12">
+        <h3 class="main-title">
+            USER SETTINGS
+        </h3>
+    </div>
+    <form id="user-settings" name="user-settings" class="col s12" ng-submit="onSubmit()">
+        <div class="row user-data">
+            <div class="col s12 l4 avatar">
+                <div class="img-wrapper">
+                    <img ng-src="{{ userChangeable.avatar }}" alt="Avatar" id="avatar-img">
+                    <div class="edit btn-flat">
+                        <label for="upload-avatar">EDIT<i class="material-icons">image</i></label>
+                        <input type="file" name="avatar" id="upload-avatar" nv-file-select uploader="uploader">
+                    </div>
+                    <small class="info">Max. size: 1MB. JPG only.</small>
+                </div>
+            </div>
+            <div class="col s12 l8">
+                <div class="row">
+                    <div class="input-field dark-input col s12">
+                        <input id="name-us" type="text" ng-model="userChangeable.name">
+                        <label for="name-us" class="active">Full Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field dark-input col s12">
+                        <input disabled value="{{ userSecure.username }}" id="username-us" type="text">
+                        <label for="username-us" class="active">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field dark-input col s12">
+                        <input disabled value="{{ user.email }}" id="email-us" type="email">
+                        <label for="email-us" class="active">Email</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row important-data">
+            <div class="col s12 l6 xl5 offset-xl1 password">
+                <h4>Change Password</h4>
+                <div class="row">
+                    <div class="input-field dark-input col s12 old-pass">
+                        <input id="password-us-old" type="password" ng-model="userChangeable.oldPassword">
+                        <label for="password-us-old">Old Password</label>
+                    </div>
+                    <div class="input-field dark-input col s12 new-pass">
+                        <input id="password-us-new" type="password" ng-model="userChangeable.newPassword">
+                        <label for="password-us-new">New Password</label>
+                    </div>
+                    <div class="col s12">
+                        <button id="us-submit" class="btn waves-effect waves-light" type="submit" form="user-settings" name="submit">
+                            SAVE CHANGES
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 l5 xl4 offset-l1 offset-xl1 delete">
+                <h4>Delete Account</h4>
+                <div class="row">
+                    <div class="col s12">
+                        <p id="disclaimer">
+                            This is a <strong>permanent</strong> action. Once your account is deleted <strong>you will lose all access</strong> to it and to its related data. Only proceed if you are completely sure.
+                        </p>
+                    </div>
+                    <div class="col s12">
+                        <button id="delete-account" class="btn waves-effect waves-light red darken-4 modal-trigger" data-target="modal-delete">DELETE ACCOUNT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div id="modal-delete" class="modal">
+        <div class="modal-content">
+            <h4>Delete Account</h4>
+            <p>To delete your account fill the following fields:</p>
+            <div class="row">
+                <div class="input-field dark-input col s12">
+                    <input id="delete-password" type="password" ng-model="userDelete.password">
+                    <label for="delete-password">Password</label>
+                </div>
+                <div class="col s12">
+                    <button id="delete-confirm" class="btn waves-effect waves-light red darken-4" ng-click="deleteAccount()">DELETE ACCOUNT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="fixed-action-btn video-fab">
+    <a class="fab-open btn-floating">
+        <i class="material-icons medium">keyboard_arrow_down</i>
+    </a>
+    <ul>
+        <li ng-show="user.isLogged">
+            <a class="fab-add btn-floating btn-small modal-trigger" data-target="playlist-selection-{{ index }}">
+                <i class="material-icons small">add</i>
+            </a>
+        </li>
+        <li>
+            <a class="fab-play btn-floating btn-small" ng-click="play()">
+                <i class="material-icons small">play_arrow</i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div playlist-selection index="index" on-select="onPlaylistSelect(playlistId)" id="playlist-selection-{{ index }}" class="modal modal-fixed-footer">
+    <!-- Playlist Selection Modal -->
+</div>

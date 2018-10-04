@@ -1,0 +1,55 @@
+<div class="row tracks">
+    <div class="col s12 search" search-wide search-type="'Tracks'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
+        <!-- Search Input -->
+    </div>
+    <div id="top-grid" class="col s12" ng-if="!isSearch">
+        <h3 class="main-title">TRENDING TRACKS</h3>
+        <div grid-tracks series="tracks">
+            <!-- Top Tracks Grid -->
+        </div>
+    </div>
+    <div id="search-results" class="col s12" ng-if="isSearch">
+        <h3 class="main-title">RESULTS FOR "{{ searchKey }}"</h3>
+        <div class="results">
+            <div class="not-found" ng-show="!searchedTracks.length">
+                <p>
+                    No results for "{{ searchKey }}"
+                </p>
+            </div>
+            <div class="row search-item" ng-repeat="track in searchedTracks">
+                <div class="img-box col s12 m6">
+                    <div class="search-img" ng-style="(track.imgsDone) ? {'background-image':'url(' + (track.image.length ? track.image[track.image.length - 1]['#text'] : fallbackImg) + ')'} : {}">
+                        <materialize-video-fab index="$index" play="ytVideo.open({ type: 'track', artist: track.artist, track: track.name });" add="saveOnPlaylist(playlistId, { type: 'track', artist: track.artist, track: track.name });"></materialize-video-fab>
+                    </div>
+                </div>
+                <div class="meta-data col s12 m6">
+                    <div class="title" ng-if="track.name">
+                        <a ng-href="{{ searchFor('track', track.info.artist.name + ' - ' + track.name) }}">{{ track.name }}</a>
+                    </div>
+                    <div class="artist">
+                        <a ng-href="{{ searchFor('artist', track.info.artist.name) }}" ng-if="track.info.artist.name">
+                            <span class="label">Artist:</span> {{ track.info.artist.name }}
+                        </a>
+                        <span ng-if="track.info.artist.name === undefined">
+                            <span class="label">Artist:</span> {{ track.artist }}
+                        </span>
+                    </div>
+                    <div class="album" ng-if="track.info.album">
+                        <a ng-href="{{ searchFor('album', track.info.artist.name + ' - ' + track.info.album.title) }}">
+                            <span class="label">Album:</span> {{ track.info.album.title }}
+                        </a>
+                    </div>
+                    <div class="duration" ng-if="track.info.duration && track.info.duration != 0"><span class="label">Duration:</span> {{ formatDuration(track.info.duration) }}</div>
+                    <div class="summary" ng-if="track.info.wiki.summary && stripLink(track.info.wiki.summary) != ''">
+                        {{ stripLink(track.info.wiki.summary) }} |  <a class="read-more" ng-href="{{ getSummaryLink(track.info.wiki.summary) }}" target="_blank">Read more.</a>
+                    </div>
+                    <div class="counter">
+                        <div class="listeners"><span class="label">Listeners:</span> {{ track.listeners }}</div>
+                        <div class="playcount" ng-if="track.info"><span class="label">Play Count:</span> {{ track.info.playcount  }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div materialize-pag run-on-init="false" max-page="5" page-change-func="onPageChange(page)" on-click="backToTop()"></div>
+    </div>
+</div>

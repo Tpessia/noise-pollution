@@ -1,0 +1,7 @@
+<nav class="row">
+    <div class="col s12 nav-wrapper">
+        <div>
+            <a class="breadcrumb" ng-repeat="item in breadcrumb" ng-href="{{ !$last ? item.path : '' }}" ng-bind="item.name"></a>
+        </div>
+    </div>
+</nav>

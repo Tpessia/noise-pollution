@@ -1,0 +1,16 @@
+<div id="ytPlayer" ng-class="{ 'visible': isVisible }" ng-if="isOpen">
+    <span class="controls">
+        <span class="action expand" ng-click="expand()" ng-if="isVisible">
+            <i class="material-icons">{{ isExpanded ? 'expand_more' : 'expand_less' }}</i>
+        </span><!--
+        --><span class="action visibility" ng-click="visibility()">
+            <i class="material-icons">{{ isVisible ? 'visibility_off' : 'visibility' }}</i>
+        </span><!--
+        --><span class="action close" ng-click="close()">
+            <i class="material-icons">close</i>
+        </span>
+    </span>
+    <div class="player-wrapper" ng-class="{ 'expanded': isExpanded }">
+        <youtube-video video-id="videoUrl" player-vars="playerVars"></youtube-video>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<h4>TOP ARTISTS</h4>
+<ul id="top-artists" class="collection">
+    <li ng-repeat="artist in artists" class="collection-item avatar">
+        <img ng-src="{{ (artist.imgsDone) ? artist.image[1]['#text'] : '' }}" alt="{{ artist.name }}" class="circle">
+        <div class="title artist-name">
+            <a ng-href="{{ searchFor('artist', artist.name) }}">
+                {{ artist.name }}
+            </a>
+        </div>
+        <p class="description">
+            Play Count: {{ artist.playcount }}
+            <br>
+            Listeners: {{ artist.listeners }}
+        </p>
+        <a ng-href="{{ searchFor('artist', artist.name) }}" class="secondary-content">
+            <i class="material-icons">more_vert</i>
+        </a>
+    </li>
+</ul>
+<div materialize-pag run-on-init="true" max-page="5" page-change-func="getTopArtists(page)"></div>

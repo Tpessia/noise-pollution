@@ -1,0 +1,52 @@
+<div class="row albums">
+    <div class="col s12 search" search-wide search-type="'Albums'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
+        <!-- Search Input -->
+    </div>
+    <div id="top-grid" class="col s12" ng-if="!isSearch">
+        <h3 class="main-title">TRENDING ALBUMS</h3>
+        <div grid-albums series="albums">
+            <!-- Top Albums Grid -->
+        </div>
+    </div>
+    <div id="search-results" class="col s12" ng-if="isSearch">
+        <h3 class="main-title">RESULTS FOR "{{ searchKey }}"</h3>
+        <div class="results">
+            <div class="not-found" ng-show="!searchedAlbums.length">
+                No results for "{{ searchKey }}"
+            </div>
+            <div class="row search-item" ng-repeat="album in searchedAlbums">
+                <div class="img-box col s12 m6">
+                    <div class="search-img" ng-style="(album.imgsDone) ? {'background-image':'url(' + (album.image.length ? album.image[album.image.length - 1]['#text'] : fallbackImg) + ')'} : {}">
+                        <materialize-video-fab index="$index" play="ytVideo.open({ type: 'album', artist: album.artist, album: album.name });" add="saveOnPlaylist(playlistId, { type: 'album', artist: album.artist, album: album.name });"></materialize-video-fab>
+                    </div>
+                </div>
+                <div class="meta-data col s12 m6">
+                    <div class="title" ng-if="album.name">
+                        <a ng-href="{{ searchFor('album', album.artist + ' - ' + album.name) }}">{{ album.name }}</a>
+                    </div>
+                    <div class="artist" ng-if="album.artist">
+                        <a ng-href="{{ searchFor('artist', album.artist) }}">
+                            <span class="label">Artist:</span> {{ album.artist }}
+                        </a>
+                    </div>
+                    <div class="summary" ng-if="album.info.wiki.summary && stripLink(album.info.wiki.summary) != ''">
+                        {{ stripLink(album.info.wiki.summary) }} |  <a class="read-more" ng-href="{{ getSummaryLink(album.info.wiki.summary) }}" target="_blank">Read more.</a>
+                    </div>
+                    <div class="counter">
+                        <div class="listeners" ng-if="album.info.listeners"><span class="label">Listeners:</span> {{ album.info.listeners }}</div>
+                        <div class="playcount" ng-if="album.info.playcount"><span class="label">Play Count:</span> {{ album.info.playcount  }}</div>
+                    </div>
+                    <div class="flags">
+                        <div class="album-tracks" ng-if="album.info.tracks.track && album.info.tracks.track.length != 0">
+                            <span class="label">Tracks:</span> <a ng-repeat="track in album.info.tracks.track" ng-href="{{ searchFor('track', album.artist + ' - ' + track.name) }}">{{ track.name }}</a>
+                        </div>
+                        <div class="tags" ng-if="album.info.tags.tag && album.info.tags.tag.length != 0">
+                            <span class="label">Tags:</span> <a ng-repeat="tag in album.info.tags.tag" ng-href="{{ tag.url }}" target="_blank">{{ tag.name }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div materialize-pag run-on-init="false" max-page="5" page-change-func="onPageChange(page)" on-click="backToTop()"></div>
+    </div>
+</div>

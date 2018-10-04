@@ -1,0 +1,80 @@
+<div class="main-title">
+	<h3>BY COUNTRY</h3>
+	<div class="input-field dark-input">
+		<input type="text" id="countries-input" class="autocomplete" placeholder="Country Name" ng-model="tempCurrentCountry" ng-keydown="$event.keyCode === 13 && searchByCountry(tempCurrentCountry)">
+		<i class="material-icons" ng-click="searchByCountry(tempCurrentCountry)">search</i>
+	</div>
+</div>
+<div class="row">
+	<div class="col s12">
+		<ul class="tabs tabs-fixed-width">
+			<li class="tab col s3">
+				<a class="active" href="#country-tracks">TRACKS</a>
+			</li>
+			<li class="tab col s3">
+				<a href="#country-artists">ARTISTS</a>
+			</li>
+			<div class="progress hide">
+				<div class="indeterminate"></div>
+			</div>
+		</ul>
+	</div>
+	<div id="country-tracks" class="col s12 active">
+		<div class="cards" ng-show="crountryTracks.length > 0">
+			<div class="card horizontal" ng-repeat="track in crountryTracks">
+				<div class="card-image">
+					<img ng-src="{{ (track.imgsDone) ? track.image[2]['#text'] : '' }}">
+				</div>
+				<div class="card-stacked">
+					<div class="card-content">
+						<div class="data">
+							<a href="{{ searchFor('track', track.name + ' - ' + track.artist.name) }}" class="track">{{ track.name }}</a> | <a href="{{ searchFor('artist', track.artist.name) }}" class="artist">{{ track.artist.name }}</a>
+						</div>
+						<div class="counter">
+	                        <span class="listeners"><span class="label">Listeners:</span> {{ track.listeners }}</span>
+	                        <span class="playcount" ng-if="track.info"> | <span class="label">Play Count:</span> {{ track.info.playcount  }}</span>
+	                    </div>
+						<div class="summary" ng-if="track.info.wiki.summary && stripLink(track.info.wiki.summary) != ''">
+							{{ stripLink(track.info.wiki.summary) }} |  <a class="read-more" ng-href="{{ getSummaryLink(track.info.wiki.summary) }}" target="_blank">Read more.</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div materialize-pag run-on-init="false" max-page="5" page-change-func="getTracksByCountry(currentCountry, page)" on-click="backToTop()"></div>
+		</div>
+		<div class="not-found" ng-show="crountryTracks.length == 0">
+			<p>
+				Unable to find data for <strong>{{ currentCountry }}</strong>
+			</p>
+		</div>
+	</div>
+	<div id="country-artists" class="col s12">
+		<div class="cards"  ng-show="crountryArtists.length > 0">
+			<div class="card horizontal" ng-repeat="artist in crountryArtists">
+				<div class="card-image">
+					<img ng-src="{{ (artist.imgsDone) ? artist.image[2]['#text'] : '' }}">
+				</div>
+				<div class="card-stacked">
+					<div class="card-content">
+						<div class="data">
+							<a href="{{ searchFor('artist', artist.name) }}" class="artist">{{ artist.name }}</a>
+						</div>
+						<div class="counter">
+	                        <span class="listeners"><span class="label">Listeners:</span> {{ artist.listeners }}</span>
+	                        <span class="playcount" ng-if="artist.info"> | <span class="label">Play Count:</span> {{ artist.info.stats.playcount  }}</span>
+	                    </div>
+						<div class="summary" ng-if="artist.info.bio.summary && stripLink(artist.info.bio.summary) != ''">
+							{{ stripLink(artist.info.bio.summary) }} |  <a class="read-more" ng-href="{{ getSummaryLink(artist.info.bio.summary) }}" target="_blank">Read more.</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div materialize-pag run-on-init="false" max-page="5" page-change-func="getArtistsByCountry(currentCountry, page)" on-click="backToTop()"></div>
+		</div>
+		<div class="not-found"  ng-show="crountryArtists.length == 0">
+			<p>
+				Unable to find data for <strong>{{ currentCountry }}</strong>
+			</p>
+		</div>
+	</div>
+</div>

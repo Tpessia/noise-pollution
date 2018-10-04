@@ -1,0 +1,185 @@
+body {
+    .userplaylists {
+        .not-found {
+            height: 150px;
+        }
+        .carousel-wrapper {
+            overflow: hidden;
+        }
+        .focused-playlist {
+            .playlist-title {
+                margin: 25px 0 35px;
+                .options {
+                    // margin-bottom: 5px;
+                    a {
+                        display: inline-block;
+                        &:not(:first-child) {
+                            margin-left: 5px;
+                        }
+                        &:first-child {
+                            margin-left: -5px;
+                        }
+                        .material-icons {
+                            cursor: pointer;
+                            font-size: 2rem;
+                            vertical-align: bottom;
+                            color: rgba(0, 0, 0, 0.87);
+                            @media (max-width: 600px) {
+                                font-size: 2.5rem;
+                            }
+                        }
+                    }
+                }                
+                .title-wrapper {
+                    .playlist-name {
+                        // padding-bottom: 10px;
+                        display: inline-block;
+                        // border-bottom: 4px solid $primary-color;
+                        line-height: normal;
+                        max-width: calc(100% - 55px);
+                        input {
+                            max-width: 100%;
+                            color: rgba(0, 0, 0, 0.87);
+                            height: auto;
+                            font-size: 2.28rem;
+                            width: auto;
+                            margin: 0;
+                            box-shadow: none;
+                            border: 0;
+                            line-height: normal;
+                        }
+                    }
+                    .material-icons {
+                        color: white;
+                        font-size: 1.8rem;
+                        cursor: pointer;
+                        padding: 8px;
+                        background: #212121;
+                        border-radius: 50%;
+                        margin-left: 5px;
+                        // vertical-align: sub;
+                    }
+                }
+            }
+            .playlist-tracks {
+                .track-item {
+                    $margins: 10px;
+                    @include flex;
+                    @include align-items(flex-start);
+                    width: 100%;
+                    position: relative;
+                    padding-bottom: $margins;
+                    margin-bottom: $margins;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+                    &:first-child {
+                        padding-top: $margins;
+                        border-top: 1px solid rgba(0, 0, 0, 0.15);
+                    }
+                    @media (max-width: 600px) {
+                        $margins: 20px;
+                        padding-bottom: $margins;
+                        margin-bottom: $margins;
+                        &:first-child {
+                            padding-top: $margins;
+                        }
+                    }
+                    .track-control {
+                        @include flex;
+                        margin-right: 10px;
+                        @media (max-width: 600px) {
+                            @include flex-direction(column);
+                        }
+                        .remove-track,
+                        .download-track {
+                            text-align: center;
+                            width: auto;
+                            @media (min-width: 601px) {
+                                margin-top: 10px;
+                            }
+                            .material-icons {
+                                cursor: pointer;
+                                vertical-align: bottom;
+                                color: rgba(0, 0, 0, 0.87);
+                                font-size: 2rem;
+                                @media (max-width: 600px) {
+                                    font-size: 2.5rem;
+                                }
+                            }
+                        }
+                        .move-track {
+                            text-align: center;
+                            width: auto;
+                            margin-top: 5px;
+                            .material-icons {
+                                cursor: pointer;
+                                display: block;
+                                color: rgba(0, 0, 0, 0.87);
+                                font-size: 1.5rem;
+                                @media (max-width: 600px) {
+                                    font-size: 2rem;
+                                }
+                            }
+                        }
+                        .control-disabled {
+                            pointer-events: none !important;
+                            color: #b3b2b2 !important;
+                            cursor: default !important;
+                        }
+                    }
+                    .track-title {
+                        // max-width: calc(100% - 40px);
+                        margin: 0;
+                        display: inline-block;
+                        cursor: pointer;
+                        white-space: nowrap;
+                        @media (max-width: 480px) {
+                            @include flex;
+                            @include flex-direction(column);
+                        }
+                        .track-image {
+                            width: 50px;
+                            height : 50px;
+                            display : inline-block;
+                            vertical-align : top;
+                            margin-right : 5px;
+                            @media (max-width: 600px) {
+                                width: 96px;
+                                height: 96px;
+                            }
+                            @media (max-width: 480px) {
+                                width: 100%;
+                                margin: 0px 0px 5px;
+                            }
+                            img {
+                                width : 100%;
+                                height : 100%;
+                                object-fit: cover;
+                                object-position: center;
+                                display: block;
+                            }
+                        }
+                        .track-name {
+                            display : inline-block;
+                            white-space: normal;
+                            margin-top: 13px;
+                            max-width: calc(100% - 58px);
+                            @media (max-width: 600px) {
+                                margin-top: 0;
+                                max-width: calc(100% - 102px);
+                                font-size: 1.5rem;
+                            }
+                            @media (max-width: 480px) {
+                                max-width: none;
+                                font-size: 1.2rem;
+                                text-align: justify;
+                            }
+                            a {
+                                color: rgba(0, 0, 0, 0.87);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

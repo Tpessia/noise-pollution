@@ -1,0 +1,24 @@
+<div class="modal-content row">
+    <span class="modal-close">
+        <i class="material-icons">close</i>
+    </span>
+    <div class="col s12">
+        <h4>SELECT A PLAYLIST</h4>
+    </div>
+    <div class="col s12">
+        <ul>
+            <li ng-repeat="playlist in playlists" ng-click="selectPlaylist(playlist.playlistId)" ng-if="playlists"><span>{{ playlist.name }}<i class="material-icons">chevron_right</i></span></li>
+            <li ng-if="playlists.length == 0">
+                No playlist created yet.
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="modal-footer row">
+    <div class="col s12 input-field orange-input">
+        <input type="text" placeholder="Playlist Name" ng-model="newPlaylist" ng-keydown="$event.keyCode === 13 && createPlaylist(newPlaylist)">
+    </div>
+    <div class="col s12">
+        <a class="waves-effect waves-light btn" ng-click="createPlaylist(newPlaylist)">Create Playlist</a>
+    </div>
+</div>

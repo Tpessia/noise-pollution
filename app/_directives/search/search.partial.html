@@ -1,0 +1,8 @@
+<form name="search-wide" class="search-wide" ng-submit="onSubmit(key)" ng-class="{ 'z-depth-3': isFocus }">
+    <div class="input-field">
+        <input type="search" placeholder="Search for {{ searchType }}" class="autocomplete" ng-model="key" ng-focus="isFocus = true" ng-blur="isFocus = false" ng-class="{ 'is-focus': isFocus }">
+    </div>
+    <i class="material-icons left-icon">search</i>
+    <button type="submit" class="material-icons btn-flat right-icon" ng-if="searchAvailable">arrow_forward</button>
+    <button class="material-icons btn-flat right-icon" ng-click="close()" ng-if="!searchAvailable">close</button>
+</form>

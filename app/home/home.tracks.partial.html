@@ -1,0 +1,25 @@
+<h4>TOP TRACKS</h4>
+<ul id="top-tracks" class="collection">
+    <li ng-repeat="track in tracks" class="collection-item avatar">
+        <img ng-src="{{ (track.imgsDone) ? track.image[1]['#text'] : '' }}" alt="{{ track.name }}" class="circle">
+        <div class="title track-name">
+            <a ng-href="{{ searchFor('track', track.name + ' - ' + track.artist.name) }}">
+                {{ track.name }}
+            </a>
+        </div>
+        <div class="artist-name">
+            <a ng-href="{{ searchFor('artist', track.artist.name) }}">
+                <small>{{ track.artist.name }}</small>
+            </a>
+        </div>
+        <p class="description">
+            Play Count: {{ track.playcount }}
+            <br>
+            Listeners: {{ track.listeners }}
+        </p>
+        <a ng-href="{{ searchFor('track', track.name + ' - ' + track.artist.name) }}" class="secondary-content">
+            <i class="material-icons">more_vert</i>
+        </a>
+    </li>
+</ul>
+<div materialize-pag run-on-init="true" max-page="5" page-change-func="getTopTracks(page)"></div>

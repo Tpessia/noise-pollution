@@ -1,0 +1,70 @@
+body {
+    .home {
+        .tops {
+            .tops-list {
+                margin-bottom: 40px;
+                .panel-wrapper {
+                    padding: 0 15px;
+                    h4 {
+                        margin: 0;
+                        padding: 1.3rem 0 1rem 0;
+                    }
+                    .collection {
+                        border: 0;
+                        .collection-item {
+                            padding-right: 40px;
+                            &.avatar {
+                                .title {
+                                    font-weight: 500;
+                                    a {
+                                        color: inherit;
+                                    }
+                                }
+                                .description {
+                                    font-size: 0.9rem;
+                                }
+                            }
+                            .secondary-content {
+                                i {
+                                    transition: all 0.2s linear;
+                                    color: #9e9e9e;
+                                    &:hover {
+                                        color: #bdbdbd;
+                                    }
+                                }
+                            }
+                        }
+                        &#top-tracks {
+                            .collection-item {
+                                .artist-name {
+                                    margin-top: -3px;
+                                    margin-bottom: 3px;
+                                    line-height: 1;
+                                    a {
+                                        display: inline-block;
+                                        // small {
+                                        //     display: block;
+                                        // }
+                                    }
+                                }
+                            }
+                        }
+                        &#top-tags {
+                            .collection-item {
+                                text-transform: capitalize;
+                            }
+                        }
+                    }
+                }
+                .progress {
+                    margin: 0;
+                    margin-top: -4px;
+                    background-color: $primary-color-xl;
+                    .indeterminate {
+                        background-color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+}

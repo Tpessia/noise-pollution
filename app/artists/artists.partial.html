@@ -1,0 +1,49 @@
+<div class="row artists">
+    <div class="col s12 search" search-wide search-type="'Artists'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
+        <!-- Search Input -->
+    </div>
+    <div id="top-grid" class="col s12" ng-if="!isSearch">
+        <h3 class="main-title">TRENDING ARTISTS</h3>
+        <div grid-artists series="artists">
+            <!-- Top Artists Grid -->
+        </div>
+    </div>
+    <div id="search-results" class="col s12" ng-if="isSearch">
+        <h3 class="main-title">RESULTS FOR "{{ searchKey }}"</h3>
+        <div class="results">
+            <div class="not-found" ng-show="!searchedArtists.length">
+                <p>
+                    No results for "{{ searchKey }}"
+                </p>
+            </div>
+            <div class="row search-item" ng-repeat="artist in searchedArtists">
+                <div class="img-box col s12 m6">
+                    <div class="search-img" ng-style="(artist.imgsDone) ? {'background-image':'url(' + (artist.image.length ? artist.image[artist.image.length - 1]['#text'] : fallbackImg) + ')'} : {}">
+                        <materialize-video-fab index="$index" play="ytVideo.open({ type: 'artist', artist: artist.name });" add="saveOnPlaylist(playlistId, { type: 'artist', artist: artist.name });"></materialize-video-fab>
+                    </div>
+                </div>
+                <div class="meta-data col s12 m6">
+                    <div class="title" ng-if="artist.name">
+                        <a ng-href="{{ searchFor('artist', artist.name) }}">{{ artist.name }}</a>
+                    </div>
+                    <div class="summary" ng-if="artist.info.bio.summary && stripLink(artist.info.bio.summary) != ''">
+                        {{ stripLink(artist.info.bio.summary) }} |  <a class="read-more" ng-href="{{ artist.info.bio.links.link.href }}" target="_blank">Read more.</a>
+                    </div>
+                    <div class="counter">
+                        <div class="listeners" ng-if="artist.listenersy"><span class="label">Listeners:</span> {{ artist.listeners }}</div>
+                        <div class="playcount" ng-if="artist.info.stats.playcount"><span class="label">Play Count</span>: {{ artist.info.stats.playcount }}</div>
+                    </div>
+                    <div class="flags">
+                        <div class="similar" ng-if="artist.info.similar.artist && artist.info.similar.artist.length != 0">
+                            <span class="label">Similar:</span> <a ng-repeat="similar in artist.info.similar.artist" ng-href="{{ searchFor('artist', similar.name) }}">{{ similar.name }}</a>
+                        </div>
+                        <div class="tags" ng-if="artist.info.tags.tag && artist.info.tags.tag.length != 0">
+                            <span class="label">Tags:</span> <a ng-repeat="tag in artist.info.tags.tag" ng-href="{{ tag.url }}" target="_blank">{{ tag.name }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div materialize-pag run-on-init="false" max-page="5" page-change-func="onPageChange(page)" on-click="backToTop()"></div>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+body {
+    main {
+        .usersettings {
+            margin-top: 20px;
+            form {
+                margin-top: 25px;
+                margin-bottom: 50px;
+                .row {
+                    margin-bottom: 0px;
+                    &.user-data {
+                        .avatar {
+                            text-align: center;
+                            .img-wrapper {
+                                display: inline-block;
+                                position: relative;
+                                width: 100%;
+                                min-height: 250px;
+                                max-width: 260px;
+                                max-height: 260px;
+                                #avatar-img {
+                                    min-height: inherit;
+                                    max-width: inherit;
+                                    max-height: inherit;
+                                    object-fit: cover;
+                                    object-position: center;
+                                    height: 100%;
+                                    width: 100%;
+                                }
+                                .edit {
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    display: block;
+                                    width: 100%;
+                                    background: #1b1b1b;
+                                    color: white;
+                                    font-weight: 600;
+                                    padding: 0;
+                                    label {
+                                        display: block;
+                                        width: 100%;
+                                        padding: 0 16px;
+                                        color: inherit;
+                                        font-weight: inherit;
+                                        font-size: inherit;
+                                        cursor: pointer;
+                                        .material-icons {
+                                            vertical-align: top;
+                                            margin: 0 5px;
+                                        }
+                                    }
+                                    input {
+                                        display: none;
+                                        opacity: 0;
+                                        position: absolute;
+                                        z-index: -1;
+                                    }
+                                }
+                                .info {
+                                    display: block;
+                                    text-align: left;
+                                    position: absolute;
+                                    bottom: -20px;
+                                }
+                            }
+                        }
+                        .img-wrapper,
+                        .input-field {
+                            margin-bottom: 2rem;
+                        }
+                    }                    
+                    &.important-data {
+                        margin-top: 15px;
+                        .password {
+                            &.old-pass {
+                                margin-bottom: 0.5rem;
+                            }
+                            &.new-pass {
+                                margin-bottom: 2rem;
+                            }
+                            @media (max-width: 992px) {
+                                &.old-pass {
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                        .delete {
+                            #disclaimer {
+                                text-align: justify;
+                                line-height: 2;
+                                margin: 20px 0 15px;
+                            }
+                            @media (max-width: 992px) {
+                                border-top: 1px solid rgba(0, 0, 0, 0.87);
+                                margin-top: 35px;
+                            }
+                        }
+                    }
+                }
+                &>.row {
+                    margin-bottom: 20px;
+                }
+                #us-submit {
+                    background-color: $primary-color;
+                }
+            }
+            #modal-delete {
+                max-width: 500px;
+            }
+        }
+    }
+}

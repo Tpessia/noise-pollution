@@ -1,0 +1,6 @@
+<div class="carousel">
+	<a class="carousel-item" ng-repeat="playlist in playlists | orderBy:'-date'" data-playlist-id="{{ playlist.playlistId }}">
+		<img ng-src="{{ playlist.list.length > 0 ? playlist.list[0].img : fallbackImg }}">
+		<div class="text">{{ playlist.name }}</div>
+	</a>
+</div>
